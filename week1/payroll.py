@@ -1,26 +1,24 @@
 class Employee:
-    def _init_(self, employeeId, firstName, lastName, hourlyPayRate, hoursWorked, WeeklyPay):
-        firstName = str(input("Enter your First Name:"))
-        lastName = str(input("Enter your Last Name:"))
-        employeeId = int(input("Enter your Employee ID:"))
-        hourlyPayRate = float(input("Enter your Hourly Pay Rate:"))
-        hoursWorked = float(input("Enter total hours worked for the week:"))
-        weeklyPay = float()
-
-    def showPay():   
-        firstName = ""
-        lastName = ""
-        employeeId = 0
-        hourlyPayRate = 0.00
-        hoursWorked = 0
-        weeklyPay = 0.00
-        hoursWorked <= 40 (hoursWorked * hourlyPayRate)
-        if hoursWorked >40 (hoursWorked >40(hourlyPayRate * 1.5 * hoursWorked)):
+    def __init__(self, employeeId, firstName, lastName, hourlyPayRate):
+        self.employeeID = employeeId
+        self.firstName = firstName
+        self.lastName = lastName
+        self.hourlyPayRate = hourlyPayRate
+    
+    def Pay(self, hoursWorked):  
+         if hoursWorked <= 40: 
+            return (hoursWorked * self.hourlyPayRate)
+         elif hoursWorked >40: 
+            return (40 *self.hourlyPayRate + (hoursWorked -40) * 1.5 *self.hourlyPayRate)
            
 
-            print("Employee ID: ",employeeId)
-            print("First Name: ",firstName)
-            print("Last Name: ", lastName)
-            print("Hourly Rate: ", hourlyPayRate)
-            print("Total Hours Worked: ", hoursWorked)
-            print("Total Pay Earned: ", weeklyPay)
+           
+employeeId = int (input("Enter your Employee ID: "))
+firstName =  input("Enter your First Name: ")
+lastName = input("Enter your Last Name: ")
+hourlyPayRate = float(input("Enter your Hourly Pay Rate: "))
+hoursWorked = float(input("Enter total hours worked for the week: "))
+
+newEmployee = Employee(firstName, lastName, employeeId, hourlyPayRate)
+print (f'{firstName} {lastName} paycheck amount is {newEmployee.Pay(hoursWorked):.2f}')
+
