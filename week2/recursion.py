@@ -30,7 +30,6 @@ print(f"Sum of odd numbers between 1 and 20 using recursion = {loop1Rec(3,1)}")
 
 def loop2Rec(num,even_sum):
     # Duplicate the loop2 function using recursion
-
     if (num >=20):
         return even_sum
     # elif (num % 2) ==0:
