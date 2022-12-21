@@ -1,6 +1,6 @@
 class stack:
     def __init__(self):
-            self._data = ['racer', 'noon', 'python', 'madam']
+            self._data = []
 
     def push(self, data ):
         self._data.append(data)
@@ -34,8 +34,8 @@ class queue:
     def peek (self):
         return self._data[len(self._data) -1]
 
-# queue = queue()
-# # queue.push()
-# print(queue.peek())
-# answer = queue.pop()
-# print(answer)
+queue = queue()
+# queue.push()
+print(queue.peek())
+answer = queue.pop()
+print(answer)
