@@ -72,11 +72,25 @@ class DoublyLinkedList:
             else:
                 curr = self.head
                 count = 0
-
+                
                 while curr.next!=None:
                     if count == index:
                         #adding
-                        pass
+                        prev = curr
+                        next = curr.next
+                        
+                        new_node.prev = prev
+
+                        next.prev = new_node
+                        new_node.next = next
+                        curr.next = new_node
+
+
+
+
+
+                        break
+                        
 
                     else:
                         count += 1
@@ -175,5 +189,8 @@ items.addFirst('Force')
 items.addFirst('the')
 items.addFirst('May')
 items.addAtIndex('!',6)
-# items.addAtIndex('all',5)
+print (items)
+items.addAtIndex('all',5)
+items.addAtIndex('us',5)
+items.delete('you')
 print (items)  
