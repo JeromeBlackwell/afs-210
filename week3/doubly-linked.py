@@ -61,45 +61,46 @@ class DoublyLinkedList:
         # If index is greater than the length, the data will not be inserted.
         # This function does not replace the data at the index, but pushes everything else down.
         new_node = Node(data)
-        print (index, self.count)
+        # print (index, self.count)
         if index == self.count:
             return  self.addLast(data)
-        else:
-            if index >  (self.count):
-                return
-            if index == 0:
+        elif index >  (self.count):
+              return
+        elif index == 0:
                 return self.addFirst(data)
+            
+            
+        curr = self.head
+        prev = self.head
+        count = 0
+        
+        while curr!=None:
+            if count == index:
+                #adding
+                new_node.prev = prev
+                new_node.next = curr
+                curr.prev = new_node
+                prev.next = new_node
+                self.count += 1
+                break
             else:
-                curr = self.head
-                count = 0
-                
-                while curr.next!=None:
-                    if count == index:
-                        #adding
-                        prev = curr
-                        next = curr.next
-                        
-                        new_node.prev = prev
+                count += 1
+                prev = curr
+                curr = curr.next
 
-                        next.prev = new_node
-                        new_node.next = next
-                        curr.next = new_node
-
-
-
-
-
-                        break
-                        
-
-                    else:
-                        count += 1
-                        curr = curr.next
-           
 
     def indexOf(self, data):
-        # Search through the list. Return the index position if data is found, otherwise return -1    
-        pass
+            # Search through the list. Return the index position if data is found, otherwise return -1    
+        curr = self.head
+        pos = -1
+
+        while curr.next !=None:
+            pos +=1
+            if(curr.data == data):
+                return pos
+            
+            curr = curr.next
+        return -1
 
 
     def add(self, data) -> None:
@@ -181,16 +182,20 @@ class DoublyLinkedList:
         return myStr
 
 
+
 items = DoublyLinkedList()
-items.addAtIndex('you',0)
-items.addFirst('with')   
-items.addFirst('be')
-items.addFirst('Force')   
-items.addFirst('the')
+
 items.addFirst('May')
-items.addAtIndex('!',6)
+items.add('the')
+items.add('Force')
+items.add('be')
+items.add('with')
+items.add('you')
+items.add('!')
 print (items)
-items.addAtIndex('all',5)
+# print(items.count)
+items.addAtIndex('all',6)
 items.addAtIndex('us',5)
+print (items.indexOf('with'))
 items.delete('you')
 print (items)  
