@@ -1,17 +1,6 @@
-class Node:
-    # A doubly-linked node.
-    def __init__(self, data=None):
-        self.data = data
-        self.next = None
-        self.prev = None
-
-
-
-
-
 class stack:
     def __init__(self):
-            self.data = []
+        self.data = []
 
     def push(self, data ):
         self.data.append(data)
@@ -25,63 +14,59 @@ class stack:
         else:
             return True   
     def peek (self):
-        return self.data[len(self.data) -1]
+        return self.data[-1]
 
-# stack = stack()
-# stack.push(10)
-# print(stack.peek())
-# answer = stack.pop()
-# print(answer)
+    def __str__(self):
+        return str(self.data)
+
 
 
 
 class queue:
-    def _init_(self):
-        self.head = None
-        self.tail = None
-        self.count = 0
-
-    def enqueue(self, data ):
-        new_node = Node(data)
-        if self.head is None:
-            self.head = new_node
-            self.tail = self.head
-        else:
-            self.tail.next = new_node
-            new_node.prev = self.tail
-            self.tail = new_node
-
-        self.count += 1
-  
-    def dequeue(self):
-        curr = self.head.next
-        curr.prev = None
-        self.head = curr
+    def __init__(self):
+        self.data = []
         
     def size(self):
-        return self.count 
-
+        return len(self.data)
     def isEmpty(self):
-        if self.count == 0:
+        if len(self.data) == 0:
             return False
         else:
             return True
-        
 
-    def peek (self):
-        return self.head
-    
+    def enqueue(self,data):
+        self.data.insert(0,data)
+
+    def dequeue(self):
+        return self.data.pop()
+
+    def peek(self):
+        return self.data[-1]
+
+    def __str__(self):
+        return str(self.data)
 
 
-# queue.push()
-# print(queue.peek())
-# answer = queue.pop()
-# print(answer)
 
 def isPalindrome (str):
     new_queue = queue()
     new_stack = stack()
-    print(str)
+    
+    for letter in str:
+        new_queue.enqueue(letter)
+        new_stack.push(letter)
+
+    print(new_queue)
+    print(new_stack)
 
 monster = input ('Enter string of choice: ')
-print (isPalindrome(monster))
+isPalindrome(monster)
+
+
+
+
+
+
+    
+
+
