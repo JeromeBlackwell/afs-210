@@ -6,9 +6,9 @@ class HashTable:
 
     def hashfunction(self,key):
         # Insert your hashing function code
-        # Key moulus table_size
+        # Key modulus table_size
         return key % self.size
-    
+       
     def rehash(self,key):
         # Insert your secondary hashing function code
         return key // self.size
@@ -20,14 +20,25 @@ class HashTable:
         # key = 3.13
         hashvalue = self.hashfunction(key)
         # print(hashvalue) #0..9
-        self.slots[hashvalue] = key
-        self.data[hashvalue] = data
-                
+        if self.slots[hashvalue] == None:
+            self.slots[hashvalue] = key
+            self.data[hashvalue] = data
+        else:
+            hashvalue = self.rehash(key)
+            if self.slots[hashvalue] == None:
+                self.slots[hashvalue] = key
+                self.data[hashvalue] = data
+                                    
     def get(self,key):
         # Insert your code here to get data by key
         hashvalue = self.hashfunction(key)
-        print(hashvalue) #0..9
-        self.slots[hashvalue] = key
+        if self.slots[hashvalue] == key:
+            return self.data[hashvalue]
+        else:
+            hashvalue = self.rehash(key)
+            if self.slots[hashvalue] == key:
+                return self.data[hashvalue]
+        return None
 
     def __getitem__ (self,key):
         return self.get(key)
@@ -43,8 +54,8 @@ H[80] = 'C'
 H[35] = 'D'
 H[18] = 'E'
 H[52] = 'F'
-# H[89] = 'G'
-# H[70] = 'H'
+H[89] = 'G'
+H[70] = 'H'
 H[12] = 'I'
 
 # print the slot values

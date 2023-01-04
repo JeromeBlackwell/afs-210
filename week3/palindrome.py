@@ -49,15 +49,15 @@ class queue:
 
 
 def isPalindrome (str):
-    # new_queue = queue()
-    # new_stack = stack()
+    new_queue = queue()
+    new_stack = stack()
     
-    # for letter in str:
-    #     new_queue.enqueue(letter)
-    #     new_stack.push(letter)
+    for letter in str:
+        new_queue.enqueue(letter)
+        new_stack.push(letter)
 
-    # print(new_queue)
-    # print(new_stack)
+    print(new_queue)
+    print(new_stack)
     
     return str == str[::-1]
 
