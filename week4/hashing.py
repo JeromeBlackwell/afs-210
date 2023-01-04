@@ -28,6 +28,8 @@ class HashTable:
             if self.slots[hashvalue] == None:
                 self.slots[hashvalue] = key
                 self.data[hashvalue] = data
+            else:
+                print("Unresolved Collision")
                                     
     def get(self,key):
         # Insert your code here to get data by key
