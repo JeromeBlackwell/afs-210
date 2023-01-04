@@ -1,8 +1,27 @@
 
-graph = {
-
+graphA = {
+"A": ["B", "C", "D", "E", "F"],
+"B": ["C", "E"],
+"C": ["D"],
+"D": ["E"],
+"E": ["F"],
+"F": ["G", "H"],
+"G": ["F", "H"],
+"H": ["G", "F"],
+"I": []
 }
 
+graphB ={
+"A": {"B": 2, "C": 1, "D": 3, "E": 9, "F": 20},
+"B": {"C": 4, "E": 3},
+"C": {"D": 8},
+"D": {"E": 7},
+"E": {"F": 5},
+"F": {"G": 2, "H": 2},
+"G": {"F": 1, "H": 6},
+"H": {"G": 8, "F": 9},
+"I": {}
+}
 
 # finds shortest path between 2 nodes of a graph using BFS
 def breadth_first_search(graph, start, goal):
