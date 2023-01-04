@@ -98,7 +98,7 @@ def dijsktra(graph, initial, end):
     path = path[::-1]
     return path, cost
             
-print(breadth_first_search(graphA, 'A', 'H' ))
+print('The shortest path between a and h is ',(breadth_first_search(graphA,'A', 'H' )))
 path, cost = dijsktra(graphB, 'A', 'H')
-print(path)
-print(cost)
+print('The cheapest path between a and h is ',(path))
+print('The cost of going between a and h is ',(cost))
