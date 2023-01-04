@@ -58,8 +58,13 @@ def isPalindrome (str):
 
     print(new_queue)
     print(new_stack)
-    
-    return str == str[::-1]
+
+    for char in range(0, new_queue.size()):
+        if new_queue.data[char] != new_stack.data[char]:
+            return False
+
+    return True
+    # return str == str[::-1]
 
 monster = input ('Enter string of choice: ')
 print(isPalindrome(monster))
