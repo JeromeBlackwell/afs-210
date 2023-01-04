@@ -94,15 +94,11 @@ def dijsktra(graph, initial, end):
         next_node = shortest_paths[current_node][0]
         current_node = next_node
 
-        
-# print(breadth_first_search(graphA, 'A', 'H' ))
-# print(dijsktra(graphB, 'A', 'H'))
-
-    # Reverse path
+   # Reverse path
     path = path[::-1]
     return path, cost
             
 print(breadth_first_search(graphA, 'A', 'H' ))
 path, cost = dijsktra(graphB, 'A', 'H')
-print (path)
-print (cost)
+print(path)
+print(cost)
