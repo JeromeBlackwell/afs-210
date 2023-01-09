@@ -6,7 +6,7 @@ def mergeSort(nlist):
         #At the merge sort it divids the list in halve into 2 subsets every recursive call
         lefthalf = nlist[:len(nlist) // 2]
         righthalf = nlist[len(nlist) // 2:]
-        #Specify the list and then the two halves of the list we wwant to merge
+        #Specify the list and then the two halves of the list we want to merge
         merge(nlist, lefthalf, righthalf)
         #Sort the left side of the list first with the recursive call
         mergeSort(lefthalf)
@@ -19,20 +19,20 @@ def mergeSort(nlist):
     
 
 def merge(nlist,lefthalf,righthalf):
-# i is a counter for the left, j is a counter for the right and k is for the merge    
+# i is a counter for the left, j is a counter for the right, and k is for the merge    
     i=j=k=0       
-    # Checking that i is < left and j < the right length in order to know whenn to stop, dividing the list into further sub-list
+    # Checking that i is < left and j < the right length in order to know when to stop, dividing the list into further sub-list
     while i < len(lefthalf) and j < len(righthalf):
-    #Checking if the first spot in the left side of the list is < the first spot on the right side of the list.    
+    # Checking if the first spot in the left side of the list is < the first spot on the right side of the list.    
         if lefthalf[i] < righthalf[j]:
-        #Place the value into the lower spot of the sorted list    
+        # Place the value into the lower spot of the sorted list    
             nlist[k]=lefthalf[i]
             i=i+1
-        #The right half has the smaller number
+        # The right half has the smaller number
         else:
             nlist[k]=righthalf[j]
             j=j+1
-        #This is moving the counter of the sorted list
+        # This moving the counter of the sorted list
         k=k+1
     # Finished sorting the first half and proceeding to sort the second half of the list
     while i < len(lefthalf):
@@ -50,7 +50,7 @@ def merge(nlist,lefthalf,righthalf):
 nlist = [55, 31, 26, 20, 63, 7, 51, 74, 81, 40]
 # Sorted list
 mergeSort(nlist)
-# Output showing sorted list 
+# Final output showing sorted list 
 print("Sorted: ",nlist)
 
 # The running time complexity for best case, worst case, and average-case scenario is O(n*log n)
