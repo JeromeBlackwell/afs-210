@@ -6,8 +6,7 @@ def mergeSort(nlist):
         #At the merge sort it divids the list in halve into 2 subsets every recursive call
         lefthalf = nlist[:len(nlist) // 2]
         righthalf = nlist[len(nlist) // 2:]
-        #Specify the list and then the two halves of the list we want to merge
-        merge(nlist, lefthalf, righthalf)
+                 
         #Sort the left side of the list first with the recursive call
         mergeSort(lefthalf)
         #Sort the right side of the list second with the recursive call
