@@ -8,7 +8,7 @@ def quick_sort(a_list, start, end):
 
     # Call the partition helper function to split the list into two section 
     # divided between a pivot point
-    pivot = partitionStart(a_list, start, end)
+    pivot = partitionMedian(a_list, start, end)
     quick_sort(a_list, start, pivot-1)
     quick_sort(a_list, pivot+1, end)
         
@@ -16,6 +16,15 @@ def quick_sort(a_list, start, end):
 def partitionStart(a_list, start, end):
     return partition(a_list, start, end)
 
+def partitionEnd(a_list, start, end):
+    a_list[start], a_list[end] = a_list[end], a_list[start]
+    return partition(a_list, start, end)
+
+def partitionMedian(a_list, start, end):
+    a_list[start], a_list[end] = a_list[end], a_list[start]
+    return partition(a_list, start, end) 
+
+   
 def partition(a_list, start, end):
     # Select the first element as our pivot point
     pivot = a_list[start]
@@ -67,5 +76,3 @@ end_time = time.time()
 #print(myList)   
 
 print(f"The execution time is: {end_time-start_time}")
-
-
