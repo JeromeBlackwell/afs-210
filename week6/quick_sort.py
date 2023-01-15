@@ -1,5 +1,8 @@
 import time
 import random
+#This functtion will return a random integer number from 3,4,5,6,7,8,9
+print(random.randint(3,9))
+
 
 def quick_sort(a_list, start, end):
     # list size is 1 or less (which doesn't make sense)
@@ -8,23 +11,28 @@ def quick_sort(a_list, start, end):
 
     # Call the partition helper function to split the list into two section 
     # divided between a pivot point
-    pivot = partitionMedian(a_list, start, end)
+    pivot = partitionRandom(a_list, start, end)
     quick_sort(a_list, start, pivot-1)
     quick_sort(a_list, pivot+1, end)
         
 
 def partitionStart(a_list, start, end):
     return partition(a_list, start, end)
-
+#  Turn over start and end
 def partitionEnd(a_list, start, end):
     a_list[start], a_list[end] = a_list[end], a_list[start]
     return partition(a_list, start, end)
-
-def partitionMedian(a_list, start, end):
-    a_list[start], a_list[end] = a_list[end], a_list[start]
-    return partition(a_list, start, end) 
-
-   
+# Turn over start middle
+def partitionMiddle(a_list, start, end):
+    middle = len(a_list) // 2 
+    a_list[start], a_list[middle] = a_list[middle], a_list[start]
+    return partition(a_list, start, end)
+#Turn over randomly and start
+def partitionRandom(a_list, start, end):
+    Random = random.randint(0, len(a_list)-1)
+    a_list[start], a_list[Random] = a_list[Random], a_list[start]
+    return partition(a_list, start, end)
+    
 def partition(a_list, start, end):
     # Select the first element as our pivot point
     pivot = a_list[start]
@@ -66,6 +74,7 @@ print("Quick Sort:")
 #myList = [54,26,93,17,77,31]
 myList = [x for x in range(1000)]
 random.shuffle(myList)
+
 
 #print(myList)
 start_time = time.time()
