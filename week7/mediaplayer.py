@@ -168,7 +168,7 @@ class Mediaplayer:
         if self.curr == None:
             print(self.head.title + " by " + self.head.artist)
         else:
-            print(self.curr.title + " by " + self.head.artist)
+            print(self.curr.title + " by " + self.curr.artist)
     
        
     
