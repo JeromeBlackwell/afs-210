@@ -163,6 +163,12 @@ class Mediaplayer:
         else:
             self.curr = self.curr.prev
         # print(self.curr.title)
+
+    def currPlay(self):
+        if self.curr == None:
+            print(self.head.title + " by " + self.head.artist)
+        else:
+            print(self.curr.title + " by " + self.head.artist)
     
        
     
@@ -237,6 +243,7 @@ while True:
         print("Shuffling....")    
     elif choice == 7:
         # Display the song name and artist of the currently playing song
+        mediaplayer.currPlay()
         print("Currently playing: ", end=" ")    
     elif choice == 8:
         # Show the current song list order
