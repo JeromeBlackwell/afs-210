@@ -226,7 +226,7 @@ while True:
         # Display song name that is now playing
         mediaplayer.skip()
         print("Skipping....")
-        print(mediaplayer.curr)
+        print(mediaplayer.curr) 
 
     elif choice == 5:
         # Go back to the previous song on the playlist
@@ -244,7 +244,7 @@ while True:
     elif choice == 7:
         # Display the song name and artist of the currently playing song
         mediaplayer.currPlay()
-        print("Currently playing: ", end=" ")    
+        print("Currently playing: \n", end=" ")    
     elif choice == 8:
         # Show the current song list order
         # print(shuffle(mediaplayer))
@@ -253,9 +253,3 @@ while True:
     elif choice == 0:
         print("Goodbye.")
         break
-
-
-
-
-         
-    
