@@ -5,8 +5,6 @@ class Song:
     def __init__(self,title,artist):
         self.title = title
         self.artist = artist
-        self.next = None
-        self.prev = None
 
     def getTitle(self):
         return self.title
@@ -30,6 +28,13 @@ class Song:
     def __gt__(self, other):
         return ((self.title, self.artist) < (other.title, other.artist))
         
+class Node:
+        # A doubly-linked node.
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
+        self.prev = None
+            
 class Mediaplayer:
     def __init__(self):
         # Create an empty list.
@@ -37,6 +42,7 @@ class Mediaplayer:
         self.tail = None       
         self.count = 0
         self.curr = None
+        
     def iter(self):
         # Iterate through the list.
         current = self.head
@@ -50,7 +56,8 @@ class Mediaplayer:
     def addSong(self, title, artist) -> None:
         # Add a node at the end of the list
         
-        new_node = Song(title,artist)
+        new_Song = Song(title,artist)
+        new_node = Node(new_Song)
         if self.head is None:
             self.head = new_node
             self.tail = new_node
@@ -59,6 +66,7 @@ class Mediaplayer:
             new_node.prev = self.tail
             self.tail = new_node
         self.count += 1
+        
     
 
     def delete(self, title) -> None:
@@ -66,7 +74,7 @@ class Mediaplayer:
         current = self.head
         prev = self.head
         while current:
-            if current.title == title:
+            if current.data.getTitle() == title:
                 if current == self.tail:
                     prev.next = None
                     self.tail = prev
@@ -80,53 +88,33 @@ class Mediaplayer:
                 return
             prev = current
             current = current.next
-    
-    # def append(value): 
-    #     let  = (value)
-    #     if let current = last 
-    #         newNode.previous = M
-    #         lastNode.next = newNode
-    #     else: 
-    #         head = newNode
 
+    # def shuffle(self):
+        
+    #     # Loop over the range of indexes from 0 up to the length of the list:
+    #     for i in range(0, len(self.list)):
+    #         # Randomly pick an index to swap with:
+    #         indexChange = random.randint(0, len(self.list))
+
+    #          # Swap the self.list between the two indexes
+    #         self.list[i], self.list[indexChange] = self.list[indexChange], self.list[i]
+    #     for x in range(len(self.list)):
+    #         print(self.list[x])
+    #     return self.list
+            
     def shuffle(self):
-        
-        mediaplayer = []
-        curr = self.head
-        for count in range(0,self.getSize() + 1):
-            mediaplayer.append(curr)
-            curr = curr.next
-            return
+    
+    # Loop over the range of indexes from 0 up to the length of the list:
 
-        # # Loop over the range of indexes from 0 up to the length of the list:
-        # for i in range(len(values) -1):
-        for i in range(0, self.getSize() -1):
-            print(self[i])
-            # Randomly pick an index to swap with:
-            # indexChange = random.randint(0, len(values) -1)
-            indexChange = random.randint(0, len(mediaplayer))
+        for i in range(self.count -1, 0 -1):
 
-             # Swap the mediaplayer between the two indexes:
-        #     values[i], values[indexChange] = values[indexChange], values[i]
+        # Randomly pick an index to swap with:
 
-        # return values #return values
-            mediaplayer[i], mediaplayer[indexChange] = mediaplayer[indexChange], mediaplayer[i]
+            j = random.randint(0, i)
 
+        # Swap the values between the two indexes:
 
-        curr = self.head
-        for idx in range(0, len(mediaplayer)):
-            print(mediaplayer[idx].title)
-            curr.title = mediaplayer[idx].title
-            curr.artist = mediaplayer[idx].artist
-
-            curr = curr.next
-        # curr = Song(mediaplayer[0].title, mediaplayer[0].artist)
-        # for count in range(0,len(mediaplayer)):
-        #     curr.next = Song(mediaplayer[count].title, mediaplayer[count].artist)
-        #     curr = curr.next
-        # self.tail = curr
-        # return self.head
-        
+            self[i], self[j] = self[j], self[i]
 
     def __str__(self):
         myStr = ""
@@ -134,17 +122,28 @@ class Mediaplayer:
             myStr += str(node)+ "\n"
             
         return myStr
-
+    
     def __getitem__(self, index):
-        
-        return list(self)[index]
-        
+        if index > self.count - 1:
+            raise Exception("Index out of range.")
+        current = self.head
+        for n in range(index):
+            current = current.next
+        return current.data
+
+    def __setitem__(self, index, value):
+        if index > self.count - 1:
+            raise Exception("Index out of range.")
+        current = self.head
+        for n in range(index):
+            current = current.next
+        current.data = value
 
     def play(self):
-        if self.curr == None:
-            print(self.head.title)
-        else:
-            print(self.curr.title)
+            if self.curr == None:
+                print(self.head.data.getTitle())
+            else:
+                print(self.curr.data.getTitle())
 
     def skip(self):
         if self.curr == None:
@@ -153,7 +152,6 @@ class Mediaplayer:
             self.curr = self.head
         else:
             self.curr = self.curr.next
-        # print(self.curr.title)
 
     def goBack(self):
         if self.curr == None:
@@ -162,13 +160,12 @@ class Mediaplayer:
             self.curr = self.tail
         else:
             self.curr = self.curr.prev
-        # print(self.curr.title)
 
     def currPlay(self):
         if self.curr == None:
-            print(self.head.title + " by " + self.head.artist)
+            print(self.head.data.getTitle() + " by " + self.head.data.getArtist())
         else:
-            print(self.curr.title + " by " + self.curr.artist)
+            print(self.curr.data.getTitle() + " by " + self.curr.data.getArtist())
     
        
     
@@ -226,7 +223,7 @@ while True:
         # Display song name that is now playing
         mediaplayer.skip()
         print("Skipping....")
-        print(mediaplayer.curr) 
+        print(mediaplayer.curr)
 
     elif choice == 5:
         # Go back to the previous song on the playlist
@@ -243,8 +240,9 @@ while True:
         print("Shuffling....")    
     elif choice == 7:
         # Display the song name and artist of the currently playing song
+        print("Currently playing: \n", end=" ")
         mediaplayer.currPlay()
-        print("Currently playing: \n", end=" ")    
+            
     elif choice == 8:
         # Show the current song list order
         # print(shuffle(mediaplayer))
