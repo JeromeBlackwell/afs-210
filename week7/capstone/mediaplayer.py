@@ -192,7 +192,7 @@ while True:
         # remove song from playlist
         songTitle = input("Song Name: ")
         mediaplayer.delete(songTitle)
-        print("Song Removed to Playlist")
+        print("Song Removed from Playlist")
         
     elif choice == 3:
         # Play the playlist from the beginning
